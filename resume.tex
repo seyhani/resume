@@ -1,0 +1,408 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt, a4paper]{article}
+
+% Full Unicode support for non-ASCII characters
+\usepackage[utf8]{inputenc}
+
+% Useful aliases
+\newcommand{\UT}{University of Tehran}
+\newcommand{\ECE}{ECE Department}
+\newcommand{\THR}{Tehran, Iran}
+\newcommand{\ACM}{ACM Student Chapter}
+\newcommand{\AP}{\href {https://cecm.ut.ac.ir/course/view.php?id=2255}{ Advanced Programming} }
+\newcommand{\DM}{\href {https://cecm.ut.ac.ir/course/view.php?id=2083}{ Discrete Mathematics} }
+\newcommand{\DA}{\href {https://cecm.ut.ac.ir/course/view.php?id=2272}{Design and Analysis of Algorithms} }
+\newcommand{\AdvA}{Advanced Algorithms}
+\newcommand{\SE}{\href {https://cecm.ut.ac.ir/course/view.php?id=2813}{Software Engineering} }
+\newcommand{\ICSP}{\href {https://cecm.ut.ac.ir/course/view.php?id=1451}{Introduction to Computer Systems and Programming} }
+\newcommand{\RADIN}{\href{https://radinbourse.com/}{Radin Bourse}}
+\newcommand{\TAPSI}{\href{https://tapsi.ir/}{Tapsi}}
+\newcommand{\CHIBAKI}{\href{https://chibaki.ir/}{chibaki.ir}}
+\newcommand{\TSE}{ \href{http://tse.ir}{Tehran Stock Exchange}}
+
+
+% Identifying information
+\newcommand{\Title}{Curriculum Vit\ae}
+\newcommand{\FirstName}{Amir Hossein}
+\newcommand{\LastName}{Seyhani}
+\newcommand{\MyName}{\FirstName\ \LastName}
+\newcommand{\Email}{aseyhani@ut.ac.ir}
+\newcommand{\PersonalWebsite}{seyhani.github.io}
+
+% Names for citing coauthors
+\newcommand{\moradi}{\href {http://ece.ut.ac.ir/~moradih}{Dr. H. Moradi}}
+\newcommand{\hashemi}{\href {http://ece.ut.ac.ir/~rhashemi}{Dr. M. Hashemi}}
+\newcommand{\mohammadi}{\href {http://ece.ut.ac.ir/~smohamadi}{Dr. S. Mohammadi}}
+\newcommand{\khosravi}{\href {http://ece.ut.ac.ir/~r.khosravi}{Dr. R. Khosravi }}
+\newcommand{\sadeghi}{\href {http://ece.ut.ac.ir/~asadeghi}{Dr. A. Sadeghi}}
+\newcommand {\bahrak}{\href {http://ece.ut.ac.ir/~bahrak}{Dr. B. Bahrak}}
+\newcommand {\mahini}{\href {http://ece.ut.ac.ir/~hamid.mahini}{Dr. H. Mahini }}
+\newcommand {\faili}{\href {https://ece.ut.ac.ir/~hfaili}{Dr. H. Faili }}
+
+\newcommand {\hojjat}{\href {https://teias.institute/people/faculty/cs/hossein-hojjat}{Dr. H. Hojjat }}
+
+\newcommand {\mousavi}{\href {https://nms.kcl.ac.uk/mohammad.mousavi/}{Prof. M. Mousavi }}
+% Template configuration
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Disable hyphenation
+\usepackage[none]{hyphenat}
+
+% Control the font size
+\usepackage{anyfontsize}
+
+% Icon fonts (requires using xelatex or luatex)
+\usepackage[fixed]{fontawesome5}
+\usepackage{academicons}
+
+% Template variables for styling
+\newcommand{\TablePad}{\vspace{-0.4cm}}
+\newcommand{\SoftwareTitle}[1]{{\bfseries #1}}
+\newcommand{\TableTitle}[1]{{\fontsize{12pt}{0}\selectfont \itshape #1}}
+
+% For fancy and multipage tables
+\usepackage{tabularx}
+\usepackage{ltablex}
+
+% Define a new environment to place all CV entries in a 2-column table.
+% Left column are the dates, right column the entries.
+\usepackage{environ}
+\NewEnviron{EntriesTable}{
+\TablePad
+\begin{tabularx}{\textwidth}{@{}p{0.12\textwidth}@{\hspace{0.02\textwidth}}p{0.86\textwidth}@{}}
+  \BODY
+\end{tabularx}
+}
+
+% Macros to add links and mark publications
+\newcommand{\DOILink}[1]{\href{https://doi.org/#1}{doi.org/#1}}
+\newcommand{\Preprint}[1]{\newline • Preprint: \faFilePdf\ \DOILink{#1}}
+\newcommand{\Youtube}[1]{\newline • Recording: \faYoutube\, \href{https://www.youtube.com/watch?v=#1}{youtube.com/watch?v=#1}}
+\newcommand{\GitHub}[1]{\newline • Code: \faGithub\ \href{https://github.com/#1}{#1}}
+\newcommand{\GPA}[1]{GPA: (#1/20)}
+\newcommand{\RGPA}[1]{GPA (up to now): (#1/20)}
+\newcommand{\GRD}[1]{(#1/20)}
+\newcommand{\Role}[1]{\newline • Role: #1}
+\newcommand{\Website}[1]{\newline • Website: \href{https://#1}{#1}}
+\newcommand{\Slides}[1]{\newline • Slides: \faTv\ \href{https://#1}{#1}}
+\newcommand{\SlidesDOI}[1]{\newline • Slides: \faTv\ \DOILink{#1}}
+\newcommand{\PosterDOI}[1]{\newline • Poster: \faImage\ \DOILink{#1}}
+\newcommand{\OA}{\aiOpenAccess\enspace}
+\newcommand{\Invited}{\newline • \textbf{Invited talk}}
+\newcommand{\TA}[2]{ \textbf{#1}, #2 \newline \ECE, \UT }
+
+
+% Macros to set the year and duration on the left column
+\newcommand{\Duration}[2]{\fontsize{10pt}{0}\selectfont #1 -- #2}
+\newcommand{\Year}[1]{\fontsize{10pt}{0}\selectfont #1}
+\newcommand{\Ongoing}{present}
+%\newcommand{\Ongoing}{$\ast$}
+\newcommand{\Future}{future}
+\newcommand{\Review}{in review}
+\newcommand{\Accepted}{accepted}
+\newcommand{\Appointment}[4]{\textbf{#1} \newline #2 \newline #3 \newline #4}
+
+%%%%%%%%%%%%%%%%%%%%%
+% Define command to insert month name and year as date
+\usepackage{datetime}
+\newdateformat{monthyear}{\monthname[\THEMONTH], \THEYEAR}
+
+% Set the page margins
+\usepackage[a4paper,margin=1.5cm,includehead,headsep=5mm]{geometry}
+
+% To get the total page numbers (\pageref{LastPage})
+\usepackage{lastpage}
+
+% No indentation
+\setlength\parindent{0cm}
+
+% Increase the line spacing
+\renewcommand{\baselinestretch}{1.1}
+% and the spacing between rows in tables
+\renewcommand{\arraystretch}{1.5}
+
+% Remove space between items in itemize and enumerate
+\usepackage{enumitem}
+\setlist{nosep}
+
+% Use custom colors
+\usepackage[usenames,dvipsnames]{xcolor}
+
+% Set fonts. Requires compilation with xelatex
+\usepackage{fontspec}  % required to make older xelatex compile with UTF8
+
+% Configure the font style for sections
+\usepackage{sectsty}
+\sectionfont{\vspace{0.5cm}\bfseries\fontsize{12pt}{0}\selectfont\uppercase}
+\subsectionfont{\vspace{0.2cm}\mdseries\fontsize{12pt}{0}\selectfont\uppercase}
+
+% Set the spacing for sections
+%\usepackage{titlesec}
+%\titlespacing{\section}{0pt}{0cm}{0.3cm}
+%\titlespacing{\subsection}{0pt}{0.3cm}{0.3cm}
+
+% Disable number of sections. Use this instead of "section*" so that the sections still
+% appear as PDF bookmarks. Otherwise, would have to add the table of contents entries
+% manually.
+\makeatletter
+\renewcommand{\@seccntformat}[1]{}
+\makeatother
+
+% Set fancy headers
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\chead{
+  \fontsize{10pt}{12pt}\selectfont
+  \MyName
+  \hspace{0.2cm} -- \hspace{0.2cm}
+  \Title
+  \hspace{0.2cm} -- \hspace{0.2cm}
+  \monthyear\today
+}
+\rhead{\fontsize{10pt}{0}\selectfont \thepage/\pageref*{LastPage}}
+\renewcommand{\headrulewidth}{0pt}
+
+% Metadata for the PDF output and control of hyperlinks
+\usepackage[colorlinks=true]{hyperref}
+\hypersetup{
+  pdftitle={\MyName\ - \Title},
+  pdfauthor={\MyName},
+  linkcolor=blue,
+  citecolor=blue,
+  filecolor=black,
+  urlcolor=MidnightBlue
+}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+
+% No header for the first page
+\thispagestyle{empty}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% HEADER
+{\fontsize{22pt}{0}\selectfont\MyName}\\[-0.1cm]
+\rule{\textwidth}{0.2pt}
+\begin{minipage}[t]{\textwidth}
+  \begin{flushright}
+  Last updated: \monthyear\today
+  \\
+    Email: \href{mailto:\Email}{\Email}
+    \\
+    Website: \href{https://\PersonalWebsite}{\PersonalWebsite}
+  \end{flushright}
+\end{minipage}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Education}
+
+\begin{EntriesTable}
+  \Duration{2019}{\Ongoing}  &
+  \Appointment{M.Sc in Software Engineering}{\ECE, \UT, \THR}{\RGPA{17.87}}{\textbf{Thesis (in progress since 2020):} \textit{Explaining Software-Defined Networks Failures using Causal Reasoning}, under supervision of \hojjat and \mousavi }
+  \\
+  \Duration{2014}{2019}  &
+  \Appointment{B.Sc. in Computer Engineering}{\ECE, \UT, \THR}{\GPA{16.08}}
+  \\
+  \Duration{2010}{2014}  &
+  \Appointment{Diploma in Mathematics and Physics Discipline}{Mofid High School, Tehran, Iran}{\GPA{19.25}}
+  \\
+\end{EntriesTable}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Research Interests}
+Formal Methods, Software Verification, Process Algebra, Software Architecture
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Selected Courses}
+  Advanced Algorithms \GRD{20}, Advanced Computer Mathematics \GRD{17.8}, Algorithmic Graph Theory \GRD{16.7}, Modeling and Formal Verification of Reactive Systems \GRD{18.5}, Process Algebra and Automata Theory \GRD{19.25}, Software Synthesis \GRD{20}, Software Testing \GRD{20}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Awards \& Honors}
+
+\begin{EntriesTable}
+  \Year{2018} &
+  \textbf{Ranked 55th} in the nationwide master’s degree entrance exam for the software engineering field \\
+  \Year{2017}  &
+  \textbf{Ranked 3\textsuperscript{rd}} among Computer Engineering, Information Technology Field Students, \ECE , \UT
+  \\
+  \Year{2017}  &
+\textbf{M.Sc Admission from \ECE}, \UT
+	\newline
+ 	 Exempted from M.Sc university entrance exam as an exceptional-talent student
+  \\
+  \Year{2016} &
+\textbf{Best Scientific Association in Competition Activites} in the \href{http://harekatfest.ir/reports/winners/9nd}{\emph{Harkat Festival}}
+	(national wide festival which assesses scientific association’s activities.) as the membership chairperson of \ACM
+
+  \\
+  \Year{2015}  &
+ \textbf {Winner of the Faculty of Engineering (FoE) award }as the 3rd rank student, \UT
+  \\
+  \Year{2014}  &
+\textbf{Ranked 405\textsuperscript{th}} among more than 200,000 participants (i.e. top 0.2\%) in the national wide university entrance exam
+    \\
+  \Year{2011, 2012} &
+  \textbf{Semi Finalist} in the national Olympiad of Mathematics 
+  \\
+  \Year{2011, 2012} &
+  \textbf{Semi Finalist} in the national Olympiad of Informatics  
+  \\
+\end{EntriesTable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Teaching Experience}
+
+\begin{EntriesTable}
+  \Year{Fall 2021} &
+  \TA{Teaching Assistant}{\AdvA, \faili}
+  \\
+  \Year{Spr. 2019} &
+  \TA{Head Teaching Assistant}{\SE, \khosravi}
+  \\
+  \Year{Spr. 2018} &
+  \TA{Head Teaching Assistant}{\AP, \khosravi}
+  \\
+  \Year{Spr. 2018} &
+  \TA{Teaching Assistantship Supervisor}{\DM, \mohammadi}
+  \\
+  \Year{Fall 2018} &
+  \TA{Teaching Assistant}{\DA, \mahini}
+  \\
+  \Year{Fall 2017} &
+  \TA{Head Teaching Assistant}{\DM, \mohammadi}
+  \\
+  \Year{2017} &
+  \TA{Teaching Assistant}{\AP, \khosravi}
+  \\
+  \Duration{2016}{2017} &
+  \TA{Teaching Assistant}{\DM, \mohammadi}
+  \\
+  \Year{Fall 2015} &
+  \TA{Teaching Assistant}{\ICSP, \hashemi}
+  \\
+\end{EntriesTable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Work Experience}
+
+\begin{EntriesTable}
+  \Duration{2018}{\Ongoing}  &
+  \Appointment{Software Engineer, \RADIN}{A leading developer of FinTech solutions in Iran}{Development of an ultra low latency trading platform using cutting-edge technologies for \TSE}{\THR}
+  \\
+  \Duration{2017}{2018}  &
+  \Appointment{Expert Backend Developer, \TAPSI}{The second largest online taxi platform in Iran}{\THR}
+  \\
+  \Duration{2016}{2017}  &
+  \Appointment{Technical Team Lead, \CHIBAKI}{An online platform for connecting professionals who looks for job to customers}{\THR}
+  \\
+\end{EntriesTable}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Notable Projects}
+
+\begin{EntriesTable}
+  \Year{2018} &
+  \textbf{RSDL}
+  \newline
+A simple interface for \emph{SDL2} \emph{C++} library for using some basic features of \emph{SDL2} that used in the \AP course as an educational asset
+  \Role{Developer}
+  \GitHub{UTAP/RSDL}
+  \\
+  \Year{2018} &
+  \textbf{\textit{Winter Web Weeks} Contest Platform}
+  \newline
+    An online platform for holding the final contest of the \textit{Winter Web Weeks} event which held by \ACM \ of  \ECE, \UT
+  \Role{Core Developer}
+  \\
+  \Year{2017} &
+  \textbf{APHTTP}
+  \newline
+ A simple C++ library for implementing http server in C++ that used in the \AP course as an educational asset
+ \Role{Creator, Main Developer}
+  \GitHub{UTAP/APHTTP}
+  \\
+  \Year{2016} &
+  \textbf{DM Contest}
+  \newline
+An online platform for holding the end semester contest of the \DM course
+  \Role{Creator, Project Leader}
+  \GitHub{seyhani/UT-DMC}
+  \Website{http://acm.ut.ac.ir/dmc}
+  \\
+  \Year{2015} &
+  \textbf{Persian OCR}
+  \newline
+Development of the segmentation part of an OCR application for the Persian language using \emph{C++} and \emph{OpenCV} 
+  \Role{Developer}
+\end{EntriesTable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\WWW}{\href {http://acm.ut.ac.ir/www/}{Winter Web Weeks}}
+%%%%%%%
+
+\section{Voluntary Experience}
+
+\begin{EntriesTable}
+  \Year{2018}  &
+\textbf{Event Organizer}, \WWW, \ECE, \UT 
+	\newline An event held by \ACM including a workshop and a contest for teaching the fundamentals of web development using Django, HTML, CSS and Javascript  
+	\Website{http://acm.ut.ac.ir/www}
+  \\
+  \Year{2018}  &
+    \textbf{Supervisor}, \ACM , \ECE, \UT
+  \\
+  \Year{2017}  &
+\textbf{Project Mentor}, \emph{Summer of Code}, \ACM, \ECE, \UT
+    \newline
+    Leading a group of junior students in the development of a web application
+  \\
+  \Duration{2016}{2017}  &
+   \textbf{Contest Organizer}, \textbf{Discrete Mathematics Contest}, \ECE, \UT
+	\newline A contest that held at the end of each semester for the \DM course where students had to solve mathematics problems in groups
+  \\
+  \Duration{2016}{2017}  &
+\textbf{Event Organizer}, \textbf{XP Game}, \ECE, \UT
+    \newline 
+    An event for teaching \textbf{Extreme Programming} methodology to junior students which held by \ACM
+	\Website{http://acm.ut.ac.ir/xp}
+  \\
+  \Duration{2015}{2016}  &
+	\textbf{Membership Chairperson}, \ACM, \ECE, \UT
+  \\
+  \Year{2015}  &
+    \textbf{Guild Council Member of the \ECE}, \UT
+  \\
+  
+\end{EntriesTable}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Skills}
+\textbf{ Professional In:}
+\begin{itemize}
+	\item Programming Languages: C, C++, JavaScript, Java, Python
+	\item Frameworks and Libraries: Spring (Boot, Data, Cloud, Security, AMQP, Web MVC), Hibernate (ORM, Search, Validator), Node.js
+	\item Other Tools and Technologies: Docker, Git, MongoDB, MySQL, Linux
+\end{itemize}
+\textbf{ Have Experience with:}
+\begin{itemize}
+
+\item  R, XDP, Ansible, React, Vue, Django, HTML, CSS, Jquery, OpenCV, mCRL2, Spin, Kafka, RabbitMQ	
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Languages}
+\TablePad
+\begin{tabularx}{\textwidth}{@{}p{0.15\textwidth} p{0.85\textwidth}@{}}
+  Persian & Native
+  \\
+  English & IELTS Academic: Overall Band Score 7.5
+\end{tabularx}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{References}
+Available upon request
+
+\end{document}
